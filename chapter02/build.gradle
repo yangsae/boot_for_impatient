@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.7.5'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'java'
+    id "io.freefair.lombok" version "6.5.1"
 }
 
 group = 'dev.yangsae'
@@ -14,6 +15,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

@@ -17,14 +17,13 @@ public class Chapter02Application {
     public static void main(String[] args) {
         try(ConfigurableApplicationContext context =
                     SpringApplication.run(Chapter02Application.class, args)) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
             System.out.println("Enter 2 numbers like 'a b' : ");
-            String[] inputs = br.readLine().split(" ");
-            int a = Integer.parseInt(inputs[0]);
-            int b = Integer.parseInt(inputs[1]);
+            ArgumentResolver argumentResolver = context.getBean(ArgumentResolver.class);
+            Argument argument = argumentResolver.resolve(System.in);
 
             Calculator calculator = context.getBean(Calculator.class);
-            int result = calculator.calc(a, b);
+            int result = calculator.calc(argument.a(), argument.b());
 
             System.out.println("result = " + result);
         } catch (IOException e) {

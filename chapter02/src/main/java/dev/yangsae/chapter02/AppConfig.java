@@ -10,4 +10,9 @@ public class AppConfig {
     Calculator calculator() {
         return new AddCalculator();
     }
+
+    @Bean
+    ArgumentResolver argumentResolver() {
+        return new BufferedReaderArgumentResolver();
+    }
 }
