@@ -1,6 +1,7 @@
 package dev.yangsae.chapter02_1;
 
 import dev.yangsae.chapter02_1.domain.Customer;
+import dev.yangsae.chapter02_1.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
 public class Chapter021Application implements CommandLineRunner {
 
     @Autowired
-    NamedParameterJdbcTemplate jdbcTemplate;
+    CustomerRepository customerRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Chapter021Application.class, args);
@@ -25,16 +26,12 @@ public class Chapter021Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String sql = "SELECT id, first_name, last_name FROM customers WHERE id = :id";
-        SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("id", 1L);
+        Customer created =
+                customerRepository.save(
+                        new Customer(null, "code", "4109"));
 
-        Customer result =
-                jdbcTemplate.queryForObject(sql, param,
-                        (rs, rowNum) -> new Customer(rs.getLong("id"),
-                                rs.getString("first_name"),
-                                rs.getString("last_name")));
+        System.out.println("created = " + created);
 
-        System.out.println("result = " + result);
+        customerRepository.findAll().forEach(System.out::println);
     }
 }
