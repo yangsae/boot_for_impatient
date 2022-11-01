@@ -1,5 +1,6 @@
-package dev.yangsae.chapter02;
+package dev.yangsae.chapter02.config;
 
+import dev.yangsae.chapter02.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,5 +15,10 @@ public class AppConfig {
     @Bean
     ArgumentResolver argumentResolver() {
         return new BufferedReaderArgumentResolver();
+    }
+
+    @Bean
+    Frontend frontend() {
+        return new Frontend();
     }
 }
