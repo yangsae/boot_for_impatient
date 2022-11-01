@@ -1,15 +1,12 @@
 package dev.yangsae.chapter02;
 
-import dev.yangsae.chapter02.config.AppConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Import;
 
 import java.io.IOException;
 
 @SpringBootApplication
-@Import(AppConfig.class)
 public class Chapter02Application {
 
     public static void main(String[] args) {
